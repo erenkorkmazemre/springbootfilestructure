@@ -1,10 +1,10 @@
 package com.eren.springbootfilestructure.service.impl;
+
 import com.eren.springbootfilestructure.model.Student;
 import com.eren.springbootfilestructure.repository.StudentRepository;
 import com.eren.springbootfilestructure.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

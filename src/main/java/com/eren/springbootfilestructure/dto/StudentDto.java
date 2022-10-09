@@ -11,7 +11,6 @@ public class StudentDto {
 
     private String name;
     private String surname;
-    private String userType;
-    private String userRole;
+
 
 }

@@ -29,18 +29,16 @@ public class Student {
     private String surname;
     @Builder.Default
     @Column(name = "user_type")
-    private String userType = "UserTypes.STUDENT.getValue()";
+    private String userType = UserTypes.STUDENT.getValue();
     @Builder.Default
     @Column(name = "user_role")
-    private String userRole = "Roles.USER.getValue()";
+    private String userRole = Roles.USER.getValue();
     @Builder.Default
     @Column(name = "is_active")
     private Boolean isActive = Boolean.TRUE;
-
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "created_time")
     private LocalDateTime createdTime;
-
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
