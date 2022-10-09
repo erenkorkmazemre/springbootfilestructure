@@ -1,6 +1,8 @@
 package com.eren.springbootfilestructure.model;
 
 
+import com.eren.springbootfilestructure.enums.Roles;
+import com.eren.springbootfilestructure.enums.UserTypes;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,11 +28,19 @@ public class Student {
     @Column(name = "surname")
     private String surname;
     @Builder.Default
+    @Column(name = "user_type")
+    private String userType = "UserTypes.STUDENT.getValue()";
+    @Builder.Default
+    @Column(name = "user_role")
+    private String userRole = "Roles.USER.getValue()";
+    @Builder.Default
     @Column(name = "is_active")
     private Boolean isActive = Boolean.TRUE;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "created_time")
     private LocalDateTime createdTime;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;

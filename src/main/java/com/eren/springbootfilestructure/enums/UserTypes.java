@@ -5,8 +5,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 public enum UserTypes {
-    ADMIN("admin"),
-    USER("user");
+    STUDENT("student"),
+    TEACHER("teacher");
 
     @Getter
     private String value;
