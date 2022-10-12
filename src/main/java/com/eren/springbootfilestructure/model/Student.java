@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Data
@@ -43,5 +44,7 @@ public class Student {
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Lecture lectureSet;
 
 }
