@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  springbootfilestructure:
+    container_name: school-organization-service
+    image: docker-school-organization-service-postgresql
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - organization-db
+  organization-db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    container_name: postgres
+    volumes:
+      - type: volume
+        source: organization-db
+        target: /data/organization-db
+
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=organization-db
+
+volumes:
+  organization-db:
+    name: organization-db
+
+
+
+
