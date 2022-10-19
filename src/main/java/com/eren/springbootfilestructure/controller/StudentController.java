@@ -4,6 +4,7 @@ import com.eren.springbootfilestructure.dto.StudentDto;
 import com.eren.springbootfilestructure.mapper.StudentMapper;
 import com.eren.springbootfilestructure.model.Student;
 import com.eren.springbootfilestructure.service.StudentService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,7 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getAllStudents());
     }
 
+    @Operation(summary = "Create a Student")
     @PostMapping("/")
     @ResponseBody
     public ResponseEntity<Student> createStudents(@RequestBody StudentDto studentDto) {
