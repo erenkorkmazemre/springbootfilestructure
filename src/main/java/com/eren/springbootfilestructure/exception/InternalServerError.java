@@ -1,4 +1,5 @@
 package com.eren.springbootfilestructure.exception;
 
-public class InternalServerError extends RuntimeException{
+public class InternalServerError extends RuntimeException {
+
 }
