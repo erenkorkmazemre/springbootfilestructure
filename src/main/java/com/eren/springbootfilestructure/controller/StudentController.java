@@ -5,6 +5,7 @@ import com.eren.springbootfilestructure.mapper.StudentMapper;
 import com.eren.springbootfilestructure.model.Student;
 import com.eren.springbootfilestructure.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +16,10 @@ import java.util.List;
 
 @Log4j2
 @RestController
+@AllArgsConstructor
 @RequestMapping("api/v1/students")
 public class StudentController {
 
-    @Autowired
     StudentService studentService;
 
     StudentMapper studentMapper;
