@@ -25,7 +25,7 @@ public class CustomErrorHandler extends RuntimeException{
                         .errorCodeInt(HttpStatus.BAD_REQUEST.value())
                         .request(request.getRequestURI())
                         .requestType(request.getMethod())
-                        .customMessage("EREN")
+                        .customMessage("Custom Message")
                         .localDateTime(LocalDateTime.now())
                         .build()
                 , HttpStatus.BAD_REQUEST);
