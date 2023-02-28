@@ -21,7 +21,6 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
-    @Autowired
     StudentMapper studentMapper;
 
     @GetMapping("/")
