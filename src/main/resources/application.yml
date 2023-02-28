@@ -2,16 +2,29 @@
 spring:
   application:
     name: school-organization-service
-  datasource:
-    url: jdbc:postgresql://organization-db:5432/organization-db
-    username: postgres
-    password: postgres
-    driverClassName: org.postgresql.Driver
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+  data:
+    mongodb:
+      authentication-database: admin
+      username: root
+      password: pass
+      database: organization-db
+      host: mongo
+      auto-index-creation: true
+      port: 27017
+
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+    include-message: always
+
+logging:
+  file:
+    name: var/logs/school-organization-service.log
+
 
 springdoc:
   swagger-ui:
     path: "/swagger-ui-custom.html"
+
+

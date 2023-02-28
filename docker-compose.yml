@@ -2,32 +2,32 @@ version: '3.9'
 services:
   springbootfilestructure:
     container_name: school-organization-service
-    image: docker-school-organization-service-postgresql
-    build: ./
+    image: docker-school-organization-service-mongodb
+    build:
+      context: ./
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     depends_on:
       - organization-db
+
+
   organization-db:
-    image: postgres
-    ports:
-      - "5432:5432"
+    image: mongo
     restart: always
-    container_name: postgres
+    container_name: mongo
+    ports:
+      - "27017:27017"
     volumes:
       - type: volume
         source: organization-db
-        target: /data/organization-db
-
+        target: /data/db
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=organization-db
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pass
 
 volumes:
   organization-db:
     name: organization-db
-
-
 
 
