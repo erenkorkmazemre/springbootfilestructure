@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -25,8 +27,10 @@ public class Student {
     private String id;
 
     @Field(name = "name")
+    @NotEmpty(message = "User's first name must not be null")
     private String name;
     @Field(name = "surname")
+    @NotBlank(message = "User's last name must not be null")
     private String surname;
     @Builder.Default
     @Field(name = "user_type")
