@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 services:
   springbootfilestructure:
     container_name: school-organization-service
@@ -10,7 +10,6 @@ services:
       - "8080:8080"
     depends_on:
       - organization-db
-
 
   organization-db:
     image: mongo
@@ -26,8 +25,27 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=$DB_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD=$DB_PASSWORD
 
+  master:
+    image: cribl/cribl:latest
+    container_name: cribl
+    environment:
+      - CRIBL_DIST_MODE=master
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@0.0.0.0:4200
+      - CRIBL_VOLUME_DIR=/opt/cribl/config-volume
+    ports:
+      - "19000:9000"
+    volumes:
+      - "~/cribl-config:/opt/cribl/config-volume"
+  workers:
+    image: cribl/cribl:latest
+    depends_on:
+      - master
+    environment:
+      - CRIBL_DIST_MODE=worker
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@master:4200
+    ports:
+      - 9000
+      
 volumes:
   organization-db:
     name: organization-db
-
-
