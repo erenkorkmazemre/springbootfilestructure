@@ -1,19 +1,19 @@
 package com.eren.springbootfilestructure.model;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
-
-@Entity
+@Document
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Data
 public class Lecture {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Field(name = "id")
+    private String id;
 
     private String math;
     private String history;

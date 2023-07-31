@@ -9,4 +9,7 @@ public interface TeacherService {
 
     List<Teacher> findAllTeachers();
 
+    Teacher saveTeachers(Teacher teacher);
+
+
 }

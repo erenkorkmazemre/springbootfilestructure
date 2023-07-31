@@ -1,33 +1,51 @@
-version: '3.9'
+version: "3.9"
 services:
   springbootfilestructure:
     container_name: school-organization-service
-    image: docker-school-organization-service-postgresql
-    build: ./
+    image: docker-school-organization-service-mongodb
+    build:
+      context: ./
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     depends_on:
       - organization-db
+
   organization-db:
-    image: postgres
-    ports:
-      - "5432:5432"
+    image: mongo
     restart: always
-    container_name: postgres
+    container_name: mongo
+    ports:
+      - "27017:27017"
     volumes:
       - type: volume
         source: organization-db
-        target: /data/organization-db
-
+        target: /data/db
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=organization-db
+      - MONGO_INITDB_ROOT_USERNAME=$DB_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$DB_PASSWORD
 
+  master:
+    image: cribl/cribl:latest
+    container_name: cribl
+    environment:
+      - CRIBL_DIST_MODE=master
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@0.0.0.0:4200
+      - CRIBL_VOLUME_DIR=/opt/cribl/config-volume
+    ports:
+      - "19000:9000"
+    volumes:
+      - "~/cribl-config:/opt/cribl/config-volume"
+  workers:
+    image: cribl/cribl:latest
+    depends_on:
+      - master
+    environment:
+      - CRIBL_DIST_MODE=worker
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@master:4200
+    ports:
+      - 9000
+      
 volumes:
   organization-db:
     name: organization-db
-
-
-
-
