@@ -1,10 +1,12 @@
 package com.eren.springbootfilestructure.dto;
 
+import java.util.List;
+
+import com.eren.springbootfilestructure.model.Lecture;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -13,6 +15,8 @@ public class StudentDto {
 
     private String name;
     private String surname;
+
+    private  List<Lecture> lectures;
 
 
 }

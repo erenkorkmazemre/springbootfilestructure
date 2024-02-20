@@ -1,6 +1,5 @@
 package com.eren.springbootfilestructure.model;
 
-
 import com.eren.springbootfilestructure.enums.Roles;
 import com.eren.springbootfilestructure.enums.UserTypes;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -11,10 +10,13 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -48,5 +50,7 @@ public class Student {
     @Field(name = "last_updated")
     private LocalDateTime lastUpdated;
 
+    @DBRef
+    private List<Lecture> lectures = new ArrayList();
 
 }
