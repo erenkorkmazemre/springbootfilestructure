@@ -55,4 +55,20 @@ public class StudentServiceImpl implements StudentService {
         student.setCreatedTime(LocalDateTime.now());
         return student;
     }
+    @Override
+    public Student updateStudentById(Student student, String studentId) {
+        Student newStudent = putStudentById(student, studentId);
+        return studentRepository.save(newStudent);
+        
+    }
+
+    private Student putStudentById(Student student, String studentId){
+        Student studentUpdated = studentRepository.findAllById(studentId);
+        studentUpdated.setName(student.getName());
+        studentUpdated.setSurname(student.getSurname());
+        //studentUpdated.setLectures(student.getLectures());
+        studentUpdated.setLastUpdated(LocalDateTime.now());
+        return studentUpdated;
+    }
+
 }
